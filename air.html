@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafb">
+  <title>Air — Awareness & Vision | FLOW</title>
+
+  <style>
+    :root {
+      --paper: #f8fafb;
+      --ink: #253440;
+      --muted: #7b8a95;
+      --blue: #7d9fb4;
+      --line: #dfe7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 85% 15%, #e3eef4 0, transparent 34%),
+        radial-gradient(ellipse at 5% 75%, #edf2f2 0, transparent 38%),
+        var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    button, textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      width: min(100% - 40px, 760px);
+      margin: 0 auto;
+      padding: 30px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .wordmark {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: .18em;
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .back-link:hover {
+      color: var(--ink);
+    }
+
+    .hero {
+      padding: 75px 0 40px;
+      animation: appear .8s ease both;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 15px 0 8px;
+      font-size: clamp(54px, 10vw, 86px);
+      font-weight: 450;
+      letter-spacing: -.065em;
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      color: #647783;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .intro {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .panel {
+      margin-top: 22px;
+      padding: 27px;
+      border: 1px solid rgba(210, 224, 231, .9);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .66);
+      box-shadow: 0 12px 45px rgba(77, 107, 124, .045);
+      backdrop-filter: blur(12px);
+    }
+
+    .step {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      font-weight: 550;
+      letter-spacing: -.025em;
+    }
+
+    .hint {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice {
+      min-height: 82px;
+      padding: 13px 8px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      color: #5e707b;
+      background: #fff;
+      transition: border-color .2s, background .2s,
+        transform .2s;
+    }
+
+    .choice:hover {
+      transform: translateY(-2px);
+      border-color: #a8c0cf;
+    }
+
+    .choice[aria-pressed="true"] {
+      border-color: #83a6bb;
+      background: #eaf2f6;
+      color: #29495d;
+      box-shadow: inset 0 0 0 1px #83a6bb;
+    }
+
+    .choice-emoji {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 115px;
+      resize: vertical;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    textarea:focus {
+      border-color: #83a6bb;
+      box-shadow: 0 0 0 3px rgba(131, 166, 187, .13);
+    }
+
+    textarea::placeholder {
+      color: #a3afb6;
+    }
+
+    .intention-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .intention {
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #5e707b;
+      background: #fff;
+      text-align: left;
+      transition: background .2s, border-color .2s;
+    }
+
+    .intention[aria-pressed="true"] {
+      border-color: #83a6bb;
+      background: #eaf2f6;
+      color: #29495d;
+    }
+
+    .finish {
+      display: block;
+      width: 100%;
+      margin-top: 22px;
+      padding: 16px 20px;
+      border: 0;
+      border-radius: 999px;
+      color: white;
+      background: #344f60;
+      transition: background .2s, transform .2s;
+    }
+
+    .finish:hover {
+      transform: translateY(-1px);
+      background: #253e4e;
+    }
+
+    .result {
+      display: none;
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 16px;
+      background: #eaf2f6;
+      color: #34566a;
+      line-height: 1.8;
+      animation: appear .4s ease both;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .footer {
+      padding-top: 36px;
+      color: #9aa7ae;
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 28px, 760px);
+        padding-top: 22px;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .panel {
+        padding: 20px 16px;
+      }
+
+      .choice-grid {
+        gap: 6px;
+      }
+
+      .choice {
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="wordmark" href=" ">FLOW</a >
+      <a class="back-link" href="index.html">↖ Back to the elements</a >
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">01 — Awareness &amp; Vision</p >
+      <h1>Air<span style="color:#91afc0">.</span></h1>
+      <p class="subtitle">Make room for your thoughts.</p >
+      <p class="intro">
+        Before deciding where to go, give yourself a moment to notice
+        where you are. There is no perfect answer here — just your own
+        experience, as it is.
+      </p >
+    </header>
+
+    <form id="airForm">
+      <section class="panel">
+        <p class="step">Step 01 / Pause</p >
+        <h2>How does your mind feel right now?</h2>
+        <p class="hint">Check in with yourself. Choose what feels closest.</p >
+
+        <div class="choice-grid" id="moodChoices">
+          <button class="choice" type="button"
+            data-value="calm" aria-pressed="false">
+            <span class="choice-emoji">☁️</span>
+            Calm
+          </button>
+          <button class="choice" type="button"
+            data-value="scattered" aria-pressed="false">
+            <span class="choice-emoji">🌫️</span>
+            Scattered
+          </button>
+          <button class="choice" type="button"
+            data-value="tired" aria-pressed="false">
+            <span class="choice-emoji">🌙</span>
+            Tired
+          </button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="step">Step 02 / Reflect</p >
+        <h2>What has been on your mind?</h2>
+        <p class="hint">
+          A thought, a hope, a question, or something you want to make
+          space for. Write as much or as little as you like.
+        </p >
+        <textarea id="reflection"
+          placeholder="Lately, I've been thinking about..."
+          maxlength="500"></textarea>
+      </section>
+
+      <section class="panel">
+        <p class="step">Step 03 / Find your direction</p >
+        <h2>What would help you most today?</h2>
+        <p class="hint">You don't have to solve everything at once.</p >
+
+        <div class="intention-list" id="intentionChoices">
+          <button class="intention" type="button"
+            data-value="clarity" aria-pressed="false">
+            ◇ &nbsp; Find clarity in my thoughts
+          </button>
+          <button class="intention" type="button"
+            data-value="begin" aria-pressed="false">
+            ↗ &nbsp; Begin with one small step
+          </button>
+          <button class="intention" type="button"
+            data-value="rest" aria-pressed="false">
+            ○ &nbsp; Give myself permission to rest
+          </button>
+        </div>
+      </section>
+
+      <button class="finish" type="submit">
+        Find my direction&nbsp; ↗
+      </button>
+    </form>
+
+    <section class="result" id="result" role="status"
+      aria-live="polite">
+      <strong id="resultTitle">A moment for yourself.</strong>
+      <span id="resultText"></span>
+    </section>
+
+    <footer class="footer">
+      FLOW · PLAN LESS, FLOW MORE.
+    </footer>
+  </main>
+
+  <script>
+    let selectedMood = "";
+    let selectedIntention = "";
+
+    function setupChoices(containerId, callback) {
+      const container = document.getElementById(containerId);
+
+      container.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", () => {
+          container.querySelectorAll("button").forEach((item) => {
+            item.setAttribute("aria-pressed", "false");
+          });
+
+          button.setAttribute("aria-pressed", "true");
+          callback(button.dataset.value);
+        });
+      });
+    }
+
+    setupChoices("moodChoices", (value) => {
+      selectedMood = value;
+    });
+
+    setupChoices("intentionChoices", (value) => {
+      selectedIntention = value;
+    });
+
+    document.getElementById("airForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!selectedMood || !selectedIntention) {
+        alert("Choose how you feel and what you need today first.");
+        return;
+      }
+
+      const messages = {
+        calm: "You have a little space to listen to yourself. Let that calm guide your next choice.",
+        scattered: "You don't need to organise every thought right now. Start with the one that matters most.",
+        tired: "You don't have to force clarity. Sometimes slowing down is a meaningful step."
+      };
+
+      const intentions = {
+        clarity: "Take a minute to write down what matters most, without judging the answer.",
+        begin: "Choose one task you can start in five minutes. Beginning is enough for now.",
+        rest: "Give yourself a short pause without needing to earn it."
+      };
+
+      document.getElementById("resultTitle").textContent =
+        "A little space, just for you.";
+
+      document.getElementById("resultText").textContent =
+        messages[selectedMood] + " " + intentions[selectedIntention];
+
+      const result = document.getElementById("result");
+      result.classList.add("show");
+      result.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  </script>
+</body>
+</html>

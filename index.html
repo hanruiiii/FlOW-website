@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="FLOW — A softer, more personal way to experience time.">
+  <title>FLOW — Plan less, flow more.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="experience" id="experience">
+    <header class="brand">
+      <a class="wordmark" href=" " id="homeLink" aria-label="FLOW home">FLOW</a >
+      <p class="eyebrow">A DIFFERENT WAY TO EXPERIENCE TIME</p >
+    </header>
+    <section class="intro" id="intro" aria-label="Welcome to FLOW">
+      <div class="mist mist-air"></div>
+      <div class="mist mist-fire"></div>
+      <div class="mist mist-water"></div>
+      <div class="mist mist-earth"></div>
+      <div class="intro-copy">
+        <p class="intro-kicker">FIND YOUR OWN RHYTHM</p >
+        <h1>
+          <span class="hero-word">FLOW</span>
+          <span class="hero-tagline">Plan less, flow more.</span>
+        </h1>
+        <div class="intro-manifesto">
+          <p>Plan with your rhythm.</p >
+          <p>Allow everything to flow through you.</p >
+          <p>Be yourself. Grow at your own pace.</p >
+        </div>
+        <button
+          class="enter-button"
+          id="enterButton"
+          type="button"
+          aria-label="Enter the four elements"
+        >
+          <span class="enter-label">ENTER YOUR FLOW</span>
+          <span class="enter-icon" aria-hidden="true">↗</span>
+        </button>
+      </div>
+      <p class="scroll-note">A little space to breathe, begin and grow.</p >
+    </section>
+    <section
+      class="quadrants"
+      id="quadrants"
+      aria-label="Explore the four elements"
+    >
+      <div class="elements-heading">
+        <p class="section-kicker">FOUR ELEMENTS · ONE FLOW</p >
+        <h2>Find your element.</h2>
+        <p class="section-intro">
+          Four ways to reconnect with yourself and your time.
+        </p >
+      </div>
+      <div class="elements-grid">
+        <!-- AIR: opens the dedicated Air experience -->
+        <a class="element-card air" href="air.html">
+          <span class="card-topline">
+            <span class="card-index">01 / AWARENESS</span>
+            <span class="element-emoji" aria-hidden="true">🌬️</span>
+          </span>
+          <span class="element-name">Air</span>
+          <span class="element-description">
+            Pause, breathe, find your direction.
+          </span>
+          <span class="card-bottom">
+            <span class="card-theme">Awareness &amp; Vision</span>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </span>
+        </a >
+        <button class="element-card fire" data-element="fire" type="button">
+          <span class="card-topline">
+            <span class="card-index">02 / INTENTION</span>
+            <span class="element-emoji" aria-hidden="true">🔥</span>
+          </span>
+          <span class="element-name">Fire</span>
+          <span class="element-description">
+            Turn intention into a small first step.
+          </span>
+          <span class="card-bottom">
+            <span class="card-theme">Intention &amp; Action</span>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </span>
+        </button>
+        <button class="element-card water" data-element="water" type="button">
+          <span class="card-topline">
+            <span class="card-index">03 / EXPLORATION</span>
+            <span class="element-emoji" aria-hidden="true">💧</span>
+          </span>
+          <span class="element-name">Water</span>
+          <span class="element-description">
+            Keep the moments that move you.
+          </span>
+          <span class="card-bottom">
+            <span class="card-theme">Exploration &amp; Experience</span>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </span>
+        </button>
+        <button class="element-card earth" data-element="earth" type="button">
+          <span class="card-topline">
+            <span class="card-index">04 / REFLECTION</span>
+            <span class="element-emoji" aria-hidden="true">🌍</span>
+          </span>
+          <span class="element-name">Earth</span>
+          <span class="element-description">
+            See how your story takes shape.
+          </span>
+          <span class="card-bottom">
+            <span class="card-theme">Reflection &amp; Growth</span>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </span>
+        </button>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <span>FLOW © <span id="year"></span></span>
+      <span class="footer-note">A softer rhythm for real life.</span>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+</body>
+</html>
